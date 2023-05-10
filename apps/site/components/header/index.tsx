@@ -1,9 +1,8 @@
 'use client'
-import { useGlobalContext } from '@/context/store'
-import React from 'react'
+import useThemes from '@/context/themeProvider'
 
 const Header = () => {
-   const { theme, setTheme, AllTheme } = useGlobalContext()
+   const { theme, setTheme, themes: AllTheme, hydrationFix } = useThemes()
 
    return (
       <div className="shadow-md py-2">
@@ -52,7 +51,7 @@ const Header = () => {
                               }}
                            >
                               <span className="text-base-content flex items-center gap-2">
-                                 {theme === item && (
+                                 {hydrationFix && theme === item && (
                                     <svg
                                        xmlns="http://www.w3.org/2000/svg"
                                        width="16"

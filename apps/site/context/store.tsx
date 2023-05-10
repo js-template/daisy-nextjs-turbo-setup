@@ -1,58 +1,25 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 
 type Props = {
    children: React.ReactNode
 }
 
 interface contextProps {
-   theme: string
-   setTheme: (theme: string) => void
-   AllTheme: string[]
+   view: boolean
+   setView: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const GlobalContext = React.createContext<contextProps>({
-   theme: 'light',
-   setTheme: () => {},
-   AllTheme: [],
+   view: false,
+   setView: () => {},
 })
 
 export const GlobalProvider = ({ children }: Props) => {
-   const [theme, setTheme] = React.useState('light')
-   const AllTheme = [
-      'light',
-      'dark',
-      'cupcake',
-      'bumblebee',
-      'emerald',
-      'corporate',
-      'synthwave',
-      'retro',
-      'cyberpunk',
-      'valentine',
-      'halloween',
-      'garden',
-      'forest',
-      'aqua',
-      'lofi',
-      'pastel',
-      'fantasy',
-      'wireframe',
-      'black',
-      'luxury',
-      'dracula',
-      'cmyk',
-      'autumn',
-      'business',
-      'acid',
-      'lemonade',
-      'night',
-      'coffee',
-      'winter',
-   ]
+   const [view, setView] = useState(false)
 
    return (
-      <GlobalContext.Provider value={{ theme, setTheme, AllTheme }}>
+      <GlobalContext.Provider value={{ view, setView }}>
          {children}
       </GlobalContext.Provider>
    )
